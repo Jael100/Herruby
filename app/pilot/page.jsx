@@ -24,7 +24,7 @@ const AGENDA = [
 
 const WHAT_YOU_GET = [
   { icon: '◉', title: '30-day free pilot access', desc: 'Full access to the Her Ruby platform for 30 days — My Body tracking, Knowledge Hub, and community circles.' },
-  { icon: '◈', title: 'One complimentary programme session', desc: 'We'll credit your wallet with 1 programme session of your choice to use during the pilot period.' },
+  { icon: '◈', title: 'One complimentary programme session', desc: "We'll credit your wallet with 1 programme session of your choice to use during the pilot period." },
   { icon: '❋', title: 'Early access to Ruby Circle', desc: 'Join the pilot community circle before public launch. Your feedback directly shapes the product.' },
   { icon: '♦', title: 'Direct access to founders', desc: 'Monthly check-in calls with the Her Ruby founding team throughout the pilot period.' },
 ];
