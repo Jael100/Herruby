@@ -17,7 +17,7 @@ export default function Vision() {
           </blockquote>
           <div style={{ width: 56, height: 3, background: `linear-gradient(90deg, ${C.ruby}, ${C.gold})`, borderRadius: 2, margin: '32px auto' }}/>
           <p style={{ fontSize: '0.9rem', color: C.muted, fontWeight: 500, letterSpacing: '0.06em', fontFamily: FONTS.sans }}>
-            — Sylvia Udemeh-Amasiani, Founder & CEO
+            — Sylvia Udemeh-Amasiani, Head of Project
           </p>
           <p style={{ fontSize: '1rem', color: C.slate, lineHeight: 1.8, maxWidth: 560, margin: '20px auto 0', fontFamily: FONTS.sans }}>
             Because when midlife women thrive — everyone around them benefits.

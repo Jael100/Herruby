@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { C, FONTS } from '../../lib/tokens.js';
-import PilotSignup from './PilotSignup.jsx';
-
 export const metadata = {
-  title: 'Her Ruby Pilot Programme — May 16 2026 · Ontario',
-  description: 'Join the Her Ruby pilot in Brampton, Ontario — May 16, 2026. Free event for midlife women 40+. Experience the platform before public launch.',
+  title: 'Her Ruby Pilot Programme — June 20 2026 · Ontario',
+  description: 'Join the Her Ruby pilot in Ontario, Canada — June 20, 2026. Free event for midlife women 40+. Experience the platform before public launch.',
   openGraph: {
-    title: 'Her Ruby Pilot Day — May 16 2026',
+    title: 'Her Ruby Pilot Day — June 20 2026',
     description: 'A free morning for midlife women in Ontario. Expert talk, platform preview, Ruby Circle, and refreshments.',
     type: 'website',
     url: 'https://herruby.ca/pilot',
@@ -31,18 +29,11 @@ const WHAT_YOU_GET = [
 
 const FAQS = [
   { q: 'Is this event really free?', a: 'Yes — completely. No credit card, no catch. Just register and show up. Refreshments are on us.' },
-  { q: 'Where is it taking place?', a: 'The venue is in Ontario (Brampton area). Exact address is shared in your confirmation email after you register on Eventbrite.' },
+  { q: 'Where is it taking place?', a: 'The venue is in Ontario, Canada. Exact address is shared in your confirmation email after you register on Eventbrite.' },
   { q: 'Who is the event for?', a: 'Women navigating midlife — roughly 40 to 68. You do not need to be tech-savvy. The platform is designed to be intuitive for everyone.' },
   { q: 'What should I bring?', a: 'Just yourself and your curiosity. Your phone if you want to try the app live. Everything else is provided.' },
   { q: 'Will my data be collected at the event?', a: 'Only what you choose to share. We collect registration details for logistics. The platform itself is PIPEDA-compliant — your health data is always private.' },
   { q: 'Can I bring a friend?', a: 'Absolutely. The more the merrier — just ask her to register separately so we have accurate numbers for seating and refreshments.' },
-];
-
-const TEAM = [
-  { initial: 'S', name: 'Sylvia Udemeh-Amasiani', role: 'CEO & Founder', bg: `linear-gradient(135deg, ${C.rubyDeep}, ${C.ruby})` },
-  { initial: 'C', name: 'Chinemeze Amasiani',    role: 'COO',            bg: 'linear-gradient(135deg,#5C6BC0,#7C8BD0)' },
-  { initial: 'A', name: 'Anita David',           role: 'Head of Programs', bg: 'linear-gradient(135deg,#5E8C61,#78A87B)' },
-  { initial: 'J', name: 'Juliet Ukwella',        role: 'Head of Technology', bg: 'linear-gradient(135deg,#27AE8F,#3DC9A8)' },
 ];
 
 const styles = {
@@ -101,9 +92,9 @@ export default function PilotPage() {
           {/* Event details strip */}
           <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginBottom: 44 }}>
             {[
-              { icon: '📅', text: 'Saturday, May 16, 2026' },
+              { icon: '📅', text: 'Saturday, June 20, 2026' },
               { icon: '🕙', text: '10:00 AM – 1:00 PM' },
-              { icon: '📍', text: 'Brampton, Ontario' },
+              { icon: '📍', text: 'Ontario, Canada' },
               { icon: '🎟', text: 'Free · Limited Spots' },
             ].map(({ icon, text }) => (
               <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
@@ -114,7 +105,7 @@ export default function PilotPage() {
           </div>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#register" style={{ background: 'white', color: C.rubyDeep, borderRadius: 14, padding: '14px 32px', fontFamily: FONTS.sans, fontWeight: 600, fontSize: '0.95rem', display: 'inline-block' }}>
+            <a href={process.env.NEXT_PUBLIC_EVENTBRITE_URL || '#register'} target="_blank" rel="noopener noreferrer" style={{ background: 'white', color: C.rubyDeep, borderRadius: 14, padding: '14px 32px', fontFamily: FONTS.sans, fontWeight: 600, fontSize: '0.95rem', display: 'inline-block' }}>
               Register on Eventbrite →
             </a>
             <a href="#agenda" style={{ background: 'rgba(255,255,255,0.1)', border: '1.5px solid rgba(255,255,255,0.35)', color: 'white', borderRadius: 14, padding: '14px 32px', fontFamily: FONTS.sans, fontSize: '0.95rem', display: 'inline-block' }}>
@@ -186,7 +177,7 @@ export default function PilotPage() {
               Claim your spot before it fills.
             </h2>
             <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, marginBottom: 32 }}>
-              Registration is free and takes 60 seconds on Eventbrite. We'll send you a confirmation with the venue address and everything you need for the day.
+              Registration is free and takes 60 seconds on Eventbrite. We'll send you a confirmation with the venue address and everything you need for June 20.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
               {['60-second registration on Eventbrite', 'Confirmation email with venue address', 'Reminder 48 hours before the event', '30-day pilot access code on the day'].map((p) => (
@@ -204,8 +195,36 @@ export default function PilotPage() {
               Register on Eventbrite →
             </a>
           </div>
-          {/* Signup form alternative */}
-          <PilotSignup />
+          {/* Eventbrite registration card */}
+          <div style={{
+            background: 'rgba(255,255,255,0.07)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: 26, padding: '36px 32px', textAlign: 'center',
+          }}>
+            <div style={{ fontSize: '3rem', marginBottom: 16 }}>🎟</div>
+            <div style={{ fontFamily: FONTS.serif, fontSize: '1.5rem', fontWeight: 700, color: 'white', marginBottom: 10 }}>
+              Register via Eventbrite
+            </div>
+            <p style={{ fontFamily: FONTS.sans, fontSize: '0.88rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, marginBottom: 24 }}>
+              Free registration takes 60 seconds. You'll receive a confirmation email with the venue address and all event details.
+            </p>
+            <a
+              href={process.env.NEXT_PUBLIC_EVENTBRITE_URL || 'https://eventbrite.ca'}
+              target="_blank" rel="noopener noreferrer"
+              style={{
+                display: 'inline-block', width: '100%',
+                background: 'white', color: C.rubyDeep,
+                border: 'none', borderRadius: 12, padding: '14px',
+                fontFamily: FONTS.sans, fontSize: '0.95rem', fontWeight: 600,
+                textDecoration: 'none', textAlign: 'center',
+              }}
+            >
+              Register on Eventbrite →
+            </a>
+            <p style={{ fontFamily: FONTS.sans, fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)', marginTop: 12 }}>
+              No payment required. Confirmation sent instantly.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -238,7 +257,7 @@ export default function PilotPage() {
           <div style={{ background: 'white', borderRadius: 22, padding: '28px 36px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16, boxShadow: '0 4px 20px rgba(92,107,192,0.08)', border: `1px solid ${C.indigo}25` }}>
             <div>
               <div style={{ fontFamily: FONTS.serif, fontSize: '1.4rem', fontWeight: 700, color: C.slate, marginBottom: 4 }}>Pilot members get early access to Wealth features.</div>
-              <p style={{ fontFamily: FONTS.sans, fontSize: '0.87rem', color: C.muted }}>Register for the May 16 event to be the first cohort with Wealth pillar access.</p>
+              <p style={{ fontFamily: FONTS.sans, fontSize: '0.87rem', color: C.muted }}>Register for the June 20 event to be the first cohort with Wealth pillar access.</p>
             </div>
             <a href="#register" style={{ display: 'inline-block', background: C.indigo, color: 'white', borderRadius: 12, padding: '13px 26px', fontFamily: FONTS.sans, fontWeight: 600, fontSize: '0.9rem' }}>Claim Your Spot →</a>
           </div>
@@ -263,32 +282,13 @@ export default function PilotPage() {
         </div>
       </section>
 
-      {/* ── MEET THE TEAM ── */}
-      <section style={{ background: C.cream, padding: '90px 5%' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 52 }}>
-            <span style={{ ...styles.label, color: C.ruby }}>Meet the Team</span>
-            <h2 style={{ ...styles.serifHead, fontSize: 'clamp(1.8rem,3.5vw,2.6rem)' }}>We'll be there in person.</h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20 }}>
-            {TEAM.map((m) => (
-              <div key={m.name} style={{ background: 'white', borderRadius: 20, padding: '28px 20px', textAlign: 'center', boxShadow: '0 4px 18px rgba(0,0,0,0.06)' }}>
-                <div style={{ width: 68, height: 68, borderRadius: '50%', background: m.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px', fontFamily: FONTS.serif, fontSize: '1.6rem', fontWeight: 700, color: 'white' }}>{m.initial}</div>
-                <div style={{ fontFamily: FONTS.serif, fontSize: '1.1rem', fontWeight: 700, color: C.slate, marginBottom: 3 }}>{m.name}</div>
-                <div style={{ fontSize: '0.72rem', fontWeight: 600, color: C.ruby, textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: FONTS.sans }}>{m.role}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── FOOTER ── */}
       <footer style={{ background: C.slate, padding: '36px 5%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
         <div style={{ fontFamily: FONTS.serif, fontSize: '1.2rem', fontWeight: 700, color: 'white', display: 'flex', alignItems: 'center', gap: 9 }}>
           <div style={{ width: 30, height: 30, borderRadius: 8, background: C.ruby, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontFamily: FONTS.serif, fontWeight: 700 }}>♦</div>
           Her Ruby
         </div>
-        <span style={{ fontFamily: FONTS.sans, fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)' }}>info@laelventures.com · © 2026 Her Ruby / Lael Ventures</span>
+        <span style={{ fontFamily: FONTS.sans, fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)' }}>info@herruby.com · © 2026 Her Ruby / Lael Ventures</span>
         <Link href="/" style={{ fontFamily: FONTS.sans, fontSize: '0.85rem', color: 'rgba(255,255,255,0.55)' }}>← Back to Home</Link>
       </footer>
 

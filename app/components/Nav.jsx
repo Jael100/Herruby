@@ -6,7 +6,6 @@ const LINKS = [
   { href: '#solution',  label: 'Solution' },
   { href: '#how',       label: 'How It Works' },
   { href: '#gift',      label: 'Gift of Health' },
-  { href: '#team',      label: 'Team' },
   { href: '/pilot', label: '✦ Pilot Event' },
 ];
 

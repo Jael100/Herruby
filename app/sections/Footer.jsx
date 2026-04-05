@@ -26,7 +26,7 @@ function ContactForm() {
   );
 }
 
-const APP_DOWNLOAD_URL = '#join'; // Replace with real store URLs when live
+const APP_DOWNLOAD_URL = '#join'; // Points to waitlist — replace with real store URLs when app is published
 
 export default function Footer() {
   return (
@@ -63,12 +63,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Platform — all link to app download */}
+          {/* Platform */}
           <div>
             <h4 style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: FONTS.sans }}>Platform</h4>
-            {['My Body','Programmes','Ruby Circle','Wellness Wallet','Knowledge Hub','Event'].map(label => (
-              <a key={label} href={label === 'Event' ? '/flyer' : APP_DOWNLOAD_URL} style={{ display: 'block', fontSize: '0.88rem', color: 'rgba(255,255,255,0.55)', marginBottom: 10, fontFamily: FONTS.sans, textDecoration: 'none', transition: 'color 0.18s' }}>
-                {label} {label !== 'Event' && '↗'}
+            {[
+              ['#solution', 'My Body'],
+              ['#solution', 'Programmes'],
+              ['#solution', 'Ruby Circle'],
+              ['#gift', 'Wellness Wallet'],
+              ['#solution', 'Knowledge Hub'],
+              ['/pilot', 'Pilot Event'],
+            ].map(([href, label]) => (
+              <a key={label} href={href} style={{ display: 'block', fontSize: '0.88rem', color: 'rgba(255,255,255,0.55)', marginBottom: 10, fontFamily: FONTS.sans, textDecoration: 'none', transition: 'color 0.18s' }}>
+                {label}
               </a>
             ))}
           </div>
@@ -77,11 +84,12 @@ export default function Footer() {
           <div>
             <h4 style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 16, fontFamily: FONTS.sans }}>Company</h4>
             {[
-              ['#team',  'About & Team'],
               ['#gift',  'For Employers'],
               ['#gift',  'Gift of Health'],
               ['#solution', 'Our Solution'],
               ['#join',  'Join Waitlist'],
+              ['/privacy', 'Privacy Policy'],
+              ['/terms', 'Terms of Service'],
             ].map(([href, label]) => (
               <a key={label} href={href} style={{ display: 'block', fontSize: '0.88rem', color: 'rgba(255,255,255,0.55)', marginBottom: 10, fontFamily: FONTS.sans, textDecoration: 'none' }}>
                 {label}
@@ -92,14 +100,14 @@ export default function Footer() {
           {/* Contact form */}
           <div>
             <h4 style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 6, fontFamily: FONTS.sans }}>Contact Us</h4>
-            <p style={{ fontFamily: FONTS.sans, fontSize: '0.82rem', color: 'rgba(255,255,255,0.35)', marginBottom: 4, lineHeight: 1.5 }}>info@laelventures.com</p>
+            <p style={{ fontFamily: FONTS.sans, fontSize: '0.82rem', color: 'rgba(255,255,255,0.35)', marginBottom: 4, lineHeight: 1.5 }}>info@herruby.com</p>
             <ContactForm />
           </div>
         </div>
 
         {/* Legal row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 20 }}>
-          {[['#','Privacy Policy'],['#','Terms of Service'],['#','ID Verification Policy'],['#','PIPEDA Statement']].map(([href,label])=>(
+          {[['/privacy','Privacy Policy'],['/terms','Terms of Service']].map(([href,label])=>(
             <a key={label} href={href} style={{fontFamily:FONTS.sans,fontSize:'0.78rem',color:'rgba(255,255,255,0.3)',textDecoration:'none'}}>{label}</a>
           ))}
         </div>

@@ -17,7 +17,7 @@ const BADGES = [
 ];
 
 export const metadata = {
-  title: 'Her Ruby Pilot Day — Saturday May 16, 2026',
+  title: 'Her Ruby Pilot Day — Saturday June 20, 2026',
   description: 'Free event for midlife women in Ontario. Platform preview, expert keynote, Wealth pillar first look, and Ruby Circle. 10am–1pm.',
 };
 
@@ -132,7 +132,7 @@ export default function FlyerPage() {
             {/* Date / time / location */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 32 }}>
               {[
-                { icon: '📅', text: 'Saturday, May 16, 2026' },
+                { icon: '📅', text: 'Saturday, June 20, 2026' },
                 { icon: '🕙', text: '10:00 AM – 1:00 PM' },
                 { icon: '📍', text: 'Ontario, Canada — venue in confirmation email' },
                 { icon: '🎟', text: 'Free · Limited to 60 women' },
@@ -255,7 +255,7 @@ export default function FlyerPage() {
             <span style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.55)' }}>No cost to attend · Spaces are limited</span>
           </div>
           <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>
-            info@laelventures.com · herruby.ca
+            info@herruby.com · herruby.ca
           </span>
         </div>
       </div>
@@ -273,7 +273,7 @@ export default function FlyerPage() {
               Ready to claim your spot?
             </div>
             <p style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, maxWidth: 480 }}>
-              60-second registration on Eventbrite. You'll receive a confirmation email with the venue address and everything you need for May 16.
+              60-second registration on Eventbrite. You'll receive a confirmation email with the venue address and everything you need for June 20.
             </p>
           </div>
           <a

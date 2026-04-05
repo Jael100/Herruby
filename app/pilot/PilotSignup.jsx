@@ -78,7 +78,7 @@ export default function PilotSignup() {
             You're registered!
           </div>
           <p style={{ fontFamily: FONTS.sans, fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.75 }}>
-            Thank you, {form.name.split(' ')[0]}! We'll send a confirmation to <strong style={{ color: 'white' }}>{form.email}</strong> within 24 hours with venue details and everything you need for May 2.
+            Thank you, {form.name.split(' ')[0]}! We'll send a confirmation to <strong style={{ color: 'white' }}>{form.email}</strong> within 24 hours with venue details and everything you need for June 20.
           </p>
           <p style={{ fontFamily: FONTS.sans, fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', marginTop: 16 }}>
             We can't wait to meet you. ♦

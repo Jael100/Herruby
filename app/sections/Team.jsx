@@ -2,7 +2,7 @@ import { C, FONTS } from '../../lib/tokens.js';
 import ScrollReveal from '../components/ScrollReveal.jsx';
 
 const TEAM = [
-  { initial: 'S', name: 'Sylvia Udemeh-Amasiani', role: 'CEO & Founder', bg: `linear-gradient(135deg, ${C.rubyDeep}, ${C.ruby})`, bio: '10+ years corporate including GSK. Exit founder of Bridgebooks (IFC Awardee). CDMP certified data professional with expertise in consumer intelligence.' },
+  { initial: 'S', name: 'Sylvia Udemeh-Amasiani', role: 'Head of Project', bg: `linear-gradient(135deg, ${C.rubyDeep}, ${C.ruby})`, bio: '10+ years corporate including GSK and P&G. Exit founder of Bridgebooks (IFC Awardee). CDMP certified data professional with expertise in consumer intelligence.' },
   { initial: 'C', name: 'Chinemeze Amasiani',    role: 'COO & Client Relationships', bg: 'linear-gradient(135deg,#5C6BC0,#7C8BD0)', bio: '15+ years in corporate across project management, customer experience and business process optimization. PMP certified.' },
   { initial: 'A', name: 'Anita David',           role: 'Head of Programs', bg: 'linear-gradient(135deg,#5E8C61,#78A87B)', bio: 'Co-founder of Bolpath and Everlasting Arm Senior Care Homes. 8+ years in the care industry and 8+ years in corporate environments.' },
   { initial: 'J', name: 'Juliet Ukwella',        role: 'Head of Technology', bg: 'linear-gradient(135deg,#27AE8F,#3DC9A8)', bio: 'MSc Cyber Security (CISSP). Author and publisher. 5+ years of technology experience building secure, scalable digital products.' },

@@ -68,13 +68,29 @@ function GiftModal({ onClose }) {
   const [sel, setSel] = useState('p2');
   const [email, setEmail] = useState('');
   const [msg, setMsg] = useState('');
-  const [cn, setCn] = useState(''); const [exp, setExp] = useState(''); const [cvc, setCvc] = useState(''); const [cname, setCname] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const pack = CREDIT_PACKS.find(p=>p.id===sel) || CREDIT_PACKS[1];
-  async function pay(e) {
-    e.preventDefault(); setLoading(true);
-    await new Promise(r=>setTimeout(r,1200));
-    setStep('done'); setLoading(false);
+  async function pay() {
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packId: sel, recipientEmail: email, message: msg }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError(data.error || 'Something went wrong. Please try again.');
+        setLoading(false);
+      }
+    } catch {
+      setError('Connection error. Please try again.');
+      setLoading(false);
+    }
   }
   return (
     <div style={{position:'fixed',inset:0,zIndex:500,background:'rgba(42,42,53,0.72)',backdropFilter:'blur(6px)',display:'flex',alignItems:'center',justifyContent:'center',padding:24}} onClick={e=>{if(e.target===e.currentTarget)onClose();}}>
@@ -109,37 +125,13 @@ function GiftModal({ onClose }) {
             {inp("Recipient's email",email,setEmail,'email')}
             <textarea placeholder="Personal message (optional)" value={msg} onChange={e=>setMsg(e.target.value)} style={{padding:'13px 16px',border:`1.5px solid ${C.faint}`,borderRadius:12,fontFamily:FONTS.sans,fontSize:'0.92rem',color:C.slate,outline:'none',background:'#FAFAFA',minHeight:80,resize:'vertical'}}/>
           </div>
+          {error && <p style={{fontFamily:FONTS.sans,fontSize:'0.85rem',color:'#D32F2F',marginBottom:12}}>{error}</p>}
           <div style={{display:'flex',gap:10}}>
             <button onClick={()=>setStep('choose')} style={{flex:1,background:C.blush,color:C.ruby,border:'none',borderRadius:12,padding:14,fontFamily:FONTS.sans,fontWeight:600,cursor:'pointer'}}>← Back</button>
-            <button onClick={()=>{if(email)setStep('payment');}} style={{flex:2,background:C.ruby,color:'white',border:'none',borderRadius:12,padding:14,fontFamily:FONTS.sans,fontWeight:600,cursor:'pointer'}}>Continue to Payment →</button>
+            <button onClick={()=>{if(email)pay();}} disabled={loading} style={{flex:2,background:C.ruby,color:'white',border:'none',borderRadius:12,padding:14,fontFamily:FONTS.sans,fontWeight:600,cursor:'pointer',opacity:loading?0.7:1}}>{loading?'Redirecting to Stripe…':`Pay $${pack.price} via Stripe →`}</button>
           </div>
+          <p style={{fontFamily:FONTS.sans,fontSize:'0.76rem',color:C.muted,marginTop:12,textAlign:'center'}}>🔒 You'll be redirected to Stripe's secure checkout. Her Ruby never sees your card details.</p>
         </>)}
-        {step==='payment' && (
-          <form onSubmit={pay} style={{display:'flex',flexDirection:'column',gap:12}}>
-            <div style={{fontFamily:FONTS.serif,fontSize:'1.8rem',fontWeight:700,color:C.slate,marginBottom:4}}>Payment</div>
-            <div style={{background:C.blush,borderRadius:12,padding:'12px 16px',fontFamily:FONTS.sans,fontSize:'0.88rem',color:C.ruby,marginBottom:8}}>{pack.label} gift — ${pack.price} · To: {email}</div>
-            {inp('Name on card',cname,setCname)}
-            {inp('Card number',cn,setCn)}
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
-              {inp('MM / YY',exp,setExp)}
-              {inp('CVC',cvc,setCvc)}
-            </div>
-            <p style={{fontFamily:FONTS.sans,fontSize:'0.76rem',color:C.muted}}>🔒 Payments processed securely via Stripe. Her Ruby never stores card details.</p>
-            <div style={{display:'flex',gap:10}}>
-              <button type="button" onClick={()=>setStep('details')} style={{flex:1,background:C.blush,color:C.ruby,border:'none',borderRadius:12,padding:14,fontFamily:FONTS.sans,fontWeight:600,cursor:'pointer'}}>← Back</button>
-              <button type="submit" disabled={loading} style={{flex:2,background:C.ruby,color:'white',border:'none',borderRadius:12,padding:14,fontFamily:FONTS.sans,fontWeight:600,cursor:'pointer',opacity:loading?0.7:1}}>{loading?'Processing…':`Pay $${pack.price} →`}</button>
-            </div>
-          </form>
-        )}
-        {step==='done' && (
-          <div style={{textAlign:'center',padding:'20px 0'}}>
-            <div style={{fontSize:'3rem',marginBottom:16}}>🎁</div>
-            <div style={{fontFamily:FONTS.serif,fontSize:'1.8rem',fontWeight:700,color:C.slate,marginBottom:12}}>Gift sent!</div>
-            <p style={{fontFamily:FONTS.sans,fontSize:'0.92rem',color:C.muted,lineHeight:1.7,marginBottom:12}}><strong>{email}</strong> will receive a gift email with their {pack.credits} wellness credits and a personalised redemption code.</p>
-            <p style={{fontFamily:FONTS.sans,fontSize:'0.85rem',color:C.muted,lineHeight:1.65,marginBottom:28}}>She can redeem them in the Her Ruby app — on her own terms, at her own pace.</p>
-            <button onClick={onClose} style={{background:C.ruby,color:'white',border:'none',borderRadius:12,padding:'13px 28px',fontFamily:FONTS.sans,fontWeight:600,cursor:'pointer'}}>Done ✦</button>
-          </div>
-        )}
       </div>
     </div>
   );
