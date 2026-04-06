@@ -2,23 +2,30 @@ import Link from 'next/link';
 import { C, FONTS } from '../../lib/tokens.js';
 
 const AGENDA = [
-  { time: '10:00', title: 'Doors open & welcome',      desc: 'Coffee, connect with the Her Ruby team and fellow attendees.' },
-  { time: '10:20', title: 'Expert keynote',            desc: 'Live talk on midlife hormonal health, energy & cognitive performance.' },
-  { time: '11:00', title: 'Platform preview',          desc: 'Hands-on first look at the Her Ruby app — My Body, Programmes, Wallet.' },
-  { time: '11:30', title: 'Wealth & Financial Wellness', desc: 'First look at our Wealth pillar — Money Circles, retirement readiness, and financial coaching designed for midlife women.', highlight: true },
-  { time: '12:00', title: 'Ruby Circle intro',         desc: 'Join a live Circle session and meet women navigating the same stage.' },
-  { time: '12:30', title: 'Q&A + refreshments',        desc: 'Ask anything. Mingle. Leave with your 30-day pilot access code.' },
-  { time: '1:00',  title: 'Close',                     desc: 'Take home pilot credits and an invite to our private post-event Circle.' },
+  { time: '10:00', dur: ' 5 min', icon: '☕', title: 'Doors open & welcome',              desc: 'Coffee, connect, settle in.',                                                             cls: 'n' },
+  { time: '10:05', dur: '30 min', icon: '🎙', title: 'Expert keynote',                    desc: 'Midlife hormonal health, energy & cognitive performance.',                                 cls: 'n' },
+  { time: '10:35', dur: '30 min', icon: '🎵', title: 'Zumba wellness class',              desc: 'Move your body — because joy is the best medicine.',                                       cls: 'n' },
+  { time: '11:05', dur: '30 min', icon: '🔬', title: "What's happening to my body?",      desc: 'Understanding perimenopause, menopause & what your symptoms are really telling you.',      cls: 'b' },
+  { time: '11:35', dur: '30 min', icon: '💰', title: 'Wealth conversation',               desc: 'Money Circles, retirement readiness & financial coaching for midlife women.',              cls: 'w' },
+  { time: '12:05', dur: '20 min', icon: '📱', title: "Platform preview & let's co-create", desc: 'See the Her Ruby app live — then shape what we build next. Your questions matter.',       cls: 'n' },
+  { time: '12:25', dur: '25 min', icon: '❋',  title: 'Network over canapés',              desc: 'How Her Ruby Circle works — meet your community over drinks and bites.',                   cls: 'n' },
+  { time: '12:50', dur: '10 min', icon: '🎁', title: 'Goodie bag & close',                desc: 'Pick up your goodie bag and 30-day pilot access code.',                                    cls: 'n' },
 ];
 
 const BADGES = [
   'Navigating midlife', 'Feeling burnt out', 'Planning retirement',
-  'An empty nester', 'Curious about your money', 'Ready to invest in you',
+  'An empty nester', 'Curious about my body', 'Ready to invest in me',
 ];
+
+const hi = {
+  b: { bg: 'rgba(92,107,192,0.16)', border: '1px solid rgba(92,107,192,0.32)', time: '#A0AEFF', title: '#C0CCFF' },
+  w: { bg: 'rgba(184,134,42,0.15)', border: '1px solid rgba(184,134,42,0.30)', time: C.goldLight, title: C.goldLight },
+  n: { bg: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', time: 'rgba(240,214,136,0.72)', title: 'white' },
+};
 
 export const metadata = {
   title: 'Her Ruby Pilot Day — Saturday June 20, 2026',
-  description: 'Free event for midlife women in Ontario. Platform preview, expert keynote, Wealth pillar first look, and Ruby Circle. 10am–1pm.',
+  description: 'Free 3-hour event for midlife women in Ontario. Expert keynote, Zumba, body education, Wealth conversation, platform preview & more. 10am–1pm.',
 };
 
 export default function FlyerPage() {
@@ -100,7 +107,7 @@ export default function FlyerPage() {
           }}>
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: C.goldLight }} />
             <span style={{ fontSize: '0.68rem', fontWeight: 600, color: C.goldLight, textTransform: 'uppercase', letterSpacing: '0.16em' }}>
-              Free Pilot Event · Ontario
+              Free Pilot Event · Ontario, Canada
             </span>
           </div>
         </div>
@@ -126,16 +133,16 @@ export default function FlyerPage() {
               <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)' }}>vitality.</em>
             </h1>
             <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, maxWidth: 400, marginBottom: 28 }}>
-              A morning for midlife women who are done putting themselves last. First look at Her Ruby — including the brand-new Wealth pillar.
+              A focused 3-hour morning for midlife women who are done putting themselves last. Move, learn, connect — and leave with real tools.
             </p>
 
             {/* Date / time / location */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 32 }}>
               {[
                 { icon: '📅', text: 'Saturday, June 20, 2026' },
-                { icon: '🕙', text: '10:00 AM – 1:00 PM' },
-                { icon: '📍', text: 'Ontario, Canada — venue in confirmation email' },
-                { icon: '🎟', text: 'Free · Limited to 60 women' },
+                { icon: '🕙', text: '10:00 AM – 1:00 PM  (3 hours)' },
+                { icon: '📍', text: 'Ontario, Canada — exact location shared with registered participants' },
+                { icon: '🎟', text: 'Free · Limited spots' },
               ].map(({ icon, text }) => (
                 <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
                   <div style={{
@@ -149,21 +156,20 @@ export default function FlyerPage() {
               ))}
             </div>
 
-            {/* Wealth spotlight badge */}
-            <div style={{
-              background: 'rgba(92,107,192,0.18)',
-              border: '1px solid rgba(92,107,192,0.4)',
-              borderRadius: 14, padding: '14px 18px',
-              marginBottom: 28,
-              display: 'flex', gap: 12, alignItems: 'flex-start',
-            }}>
-              <span style={{ fontSize: '1.3rem', flexShrink: 0, marginTop: 2 }}>💰</span>
-              <div>
-                <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#A0AEFF', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 4 }}>
-                  New at this pilot
+            {/* Feature highlights */}
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 28 }}>
+              <div style={{ background: 'rgba(92,107,192,0.16)', border: '1px solid rgba(92,107,192,0.32)', borderRadius: 12, padding: '12px 14px', display: 'flex', gap: 10, alignItems: 'center', flex: 1, minWidth: 160 }}>
+                <span style={{ fontSize: '1.1rem' }}>🔬</span>
+                <div>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#C0CCFF', marginBottom: 2 }}>What's happening to my body?</div>
+                  <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.44)' }}>Understand your symptoms</div>
                 </div>
-                <div style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.82)', lineHeight: 1.6 }}>
-                  <strong style={{ color: 'white' }}>Wealth & Financial Wellness</strong> — first look at Money Circles, retirement readiness tools, and financial coaching designed for midlife women.
+              </div>
+              <div style={{ background: 'rgba(184,134,42,0.15)', border: '1px solid rgba(184,134,42,0.30)', borderRadius: 12, padding: '12px 14px', display: 'flex', gap: 10, alignItems: 'center', flex: 1, minWidth: 160 }}>
+                <span style={{ fontSize: '1.1rem' }}>💰</span>
+                <div>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: C.goldLight, marginBottom: 2 }}>Wealth conversation</div>
+                  <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.44)' }}>Money Circles & retirement</div>
                 </div>
               </div>
             </div>
@@ -181,7 +187,7 @@ export default function FlyerPage() {
                 boxShadow: '0 8px 28px rgba(0,0,0,0.2)',
               }}
             >
-              Register Free on Eventbrite →
+              Reserve My Free Spot →
             </a>
           </div>
 
@@ -191,41 +197,36 @@ export default function FlyerPage() {
             borderLeft: '1px solid rgba(255,255,255,0.08)',
             padding: '48px 36px',
           }}>
-            <div style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>
-              Agenda
+            <div style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 16 }}>
+              What's on
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {AGENDA.map(item => (
-                <div key={item.time} style={{
-                  background: item.highlight
-                    ? 'rgba(92,107,192,0.18)'
-                    : 'rgba(255,255,255,0.05)',
-                  border: item.highlight
-                    ? '1px solid rgba(92,107,192,0.35)'
-                    : '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: 12, padding: '12px 14px',
-                  display: 'flex', gap: 12, alignItems: 'flex-start',
-                }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 600, color: item.highlight ? '#A0AEFF' : C.goldLight, minWidth: 36, paddingTop: 2, flexShrink: 0 }}>
-                    {item.time}
-                  </span>
-                  <div>
-                    <div style={{ fontSize: '0.83rem', fontWeight: 600, color: item.highlight ? '#C0CCFF' : 'white', marginBottom: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
-                      {item.title}
-                      {item.highlight && (
-                        <span style={{ background: 'rgba(92,107,192,0.5)', color: '#C0CCFF', fontSize: '0.58rem', fontWeight: 700, padding: '1px 6px', borderRadius: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>New</span>
-                      )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {AGENDA.map(item => {
+                const s = hi[item.cls];
+                return (
+                  <div key={item.time} style={{
+                    background: s.bg, border: s.border,
+                    borderRadius: 10, padding: '10px 13px',
+                    display: 'flex', gap: 10, alignItems: 'flex-start',
+                  }}>
+                    <span style={{ fontSize: '0.9rem', flexShrink: 0, width: 20, textAlign: 'center', marginTop: 2 }}>{item.icon}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexWrap: 'wrap', marginBottom: 2 }}>
+                        <span style={{ fontSize: '0.68rem', fontWeight: 600, color: s.time, flexShrink: 0 }}>{item.time}</span>
+                        <span style={{ fontSize: '0.82rem', fontWeight: 600, color: s.title, lineHeight: 1.2 }}>{item.title}</span>
+                        <span style={{ fontSize: '0.62rem', color: 'rgba(255,255,255,0.26)', flexShrink: 0 }}>{item.dur}</span>
+                      </div>
+                      <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.48)', lineHeight: 1.5 }}>{item.desc}</div>
                     </div>
-                    <div style={{ fontSize: '0.77rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>{item.desc}</div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Who it's for */}
             <div style={{ marginTop: 20 }}>
               <div style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 10 }}>
-                This is for you if you are…
+                For you if you are…
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                 {BADGES.map(b => (
@@ -260,38 +261,22 @@ export default function FlyerPage() {
         </div>
       </div>
 
-      {/* REGISTER SECTION */}
-      <div id="register" style={{ width: '100%', maxWidth: 960, marginTop: 32, padding: '0 16px' }}>
-        <div style={{
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: 20, padding: '36px 48px',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24,
-        }}>
-          <div>
-            <div style={{ fontFamily: FONTS.serif, fontSize: '1.6rem', fontWeight: 700, color: 'white', marginBottom: 6 }}>
-              Ready to claim your spot?
-            </div>
-            <p style={{ fontSize: '0.87rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, maxWidth: 480 }}>
-              60-second registration on Eventbrite. You'll receive a confirmation email with the venue address and everything you need for June 20.
-            </p>
-          </div>
-          <a
-            href={process.env.NEXT_PUBLIC_EVENTBRITE_URL || '#'}
-            target="_blank" rel="noopener noreferrer"
-            style={{
-              background: 'white', color: C.rubyDeep, borderRadius: 12,
-              padding: '13px 28px', fontSize: '0.92rem', fontWeight: 600,
-              textDecoration: 'none', flexShrink: 0,
-            }}
-          >
-            Register on Eventbrite →
-          </a>
+      {/* REGISTER BAR */}
+      <a href={process.env.NEXT_PUBLIC_EVENTBRITE_URL || '#'} target="_blank" rel="noopener noreferrer" style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        background: 'white', color: C.rubyDeep, borderRadius: 14,
+        padding: '18px 26px', marginTop: 20, width: '100%', maxWidth: 960,
+        boxShadow: '0 12px 40px rgba(0,0,0,0.4)', flexWrap: 'wrap', gap: 10, textDecoration: 'none',
+      }}>
+        <div>
+          <div style={{ fontSize: '0.96rem', fontWeight: 700, marginBottom: 3 }}>Reserve My Free Spot on Eventbrite</div>
+          <div style={{ fontSize: '0.72rem', opacity: 0.52 }}>Saturday June 20 · 10:00 AM – 1:00 PM · Ontario, Canada</div>
         </div>
-      </div>
+        <div style={{ background: C.rubyDeep, color: 'white', borderRadius: 10, padding: '11px 22px', fontSize: '0.88rem', fontWeight: 600, flexShrink: 0 }}>Register Free →</div>
+      </a>
 
-      <p style={{ marginTop: 20, fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)', textAlign: 'center' }}>
-        © 2026 Her Ruby / Lael Ventures
+      <p style={{ marginTop: 16, fontSize: '0.72rem', color: 'rgba(255,255,255,0.2)', textAlign: 'center' }}>
+        Screenshot or print-to-PDF to share · © 2026 Her Ruby / Lael Ventures
       </p>
 
       <style>{`
