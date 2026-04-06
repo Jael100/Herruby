@@ -9,8 +9,11 @@ export const metadata = {
     type: 'website',
     url: 'https://herruby.ca',
   },
-  themeColor: '#7D1A1D',
   icons: { icon: '/favicon.ico' },
+};
+
+export const viewport = {
+  themeColor: '#7D1A1D',
 };
 
 export default function RootLayout({ children }) {

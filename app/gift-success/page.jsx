@@ -1,12 +1,12 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { C, FONTS } from '../../lib/ui.js';
 
 const PACK_LABELS = { p1: 'Starter', p2: 'Monthly', p3: 'Quarterly' };
 
-export default function GiftSuccessPage() {
+function GiftSuccessContent() {
   const params = useSearchParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -119,5 +119,13 @@ export default function GiftSuccessPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function GiftSuccessPage() {
+  return (
+    <Suspense fallback={null}>
+      <GiftSuccessContent />
+    </Suspense>
   );
 }
