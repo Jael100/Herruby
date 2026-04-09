@@ -6,7 +6,7 @@ const LINKS = [
   { href: '#solution',  label: 'Solution' },
   { href: '#how',       label: 'How It Works' },
   { href: '#gift',      label: 'Gift of Health' },
-  { href: '/pilot', label: '✦ Pilot Event' },
+  { href: '#event', label: '✦ Pilot Event' },
 ];
 
 export default function Nav() {

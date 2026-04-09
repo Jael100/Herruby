@@ -7,6 +7,7 @@ import Vision       from './sections/Vision.jsx';
 import Solution     from './sections/Solution.jsx';
 import AppPreview   from './sections/AppPreview.jsx';
 import HowItWorks   from './sections/HowItWorks.jsx';
+import EventFlyer   from './sections/EventFlyer.jsx';
 import CTA          from './sections/CTA.jsx';
 import Footer       from './sections/Footer.jsx';
 
@@ -23,6 +24,7 @@ export default function HomePage() {
         <Solution />
         <AppPreview />
         <HowItWorks />
+        <EventFlyer />
         <CTA />
       </main>
       <Footer />
