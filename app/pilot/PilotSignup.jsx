@@ -12,9 +12,17 @@ export default function PilotSignup() {
   async function submit(e) {
     e.preventDefault();
     setLoading(true);
-    // Wire to POST /api/pilot-signup or Formspree in production
-    await new Promise(r => setTimeout(r, 900));
-    setSent(true);
+    try {
+      const res = await fetch('/api/pilot-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSent(true);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    }
     setLoading(false);
   }
 

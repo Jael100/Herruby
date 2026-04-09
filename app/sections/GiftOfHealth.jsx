@@ -29,8 +29,18 @@ function EmployerModal({ onClose }) {
   const up = k => v => setF(x=>({...x,[k]:v}));
   async function submit(e) {
     e.preventDefault(); setLoading(true);
-    await new Promise(r=>setTimeout(r,900));
-    setSent(true); setLoading(false);
+    try {
+      const res = await fetch('/api/partner', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(f),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSent(true);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    }
+    setLoading(false);
   }
   return (
     <div style={{position:'fixed',inset:0,zIndex:500,background:'rgba(42,42,53,0.72)',backdropFilter:'blur(6px)',display:'flex',alignItems:'center',justifyContent:'center',padding:24}} onClick={e=>{if(e.target===e.currentTarget)onClose();}}>

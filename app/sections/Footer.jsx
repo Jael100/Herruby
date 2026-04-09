@@ -9,8 +9,18 @@ function ContactForm() {
   const up = k => e => setF(x=>({...x,[k]:e.target.value}));
   async function submit(e) {
     e.preventDefault(); setLoading(true);
-    await new Promise(r=>setTimeout(r,800));
-    setSent(true); setLoading(false);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: f.name, email: f.email, message: f.msg }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSent(true);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    }
+    setLoading(false);
   }
   const inputStyle = { display:'block', width:'100%', padding:'10px 14px', background:'rgba(255,255,255,0.07)', border:'1px solid rgba(255,255,255,0.15)', borderRadius:10, fontFamily:FONTS.sans, fontSize:'0.85rem', color:'white', outline:'none', marginBottom:10 };
   if (sent) return <p style={{fontFamily:FONTS.sans,fontSize:'0.85rem',color:C.goldLight,marginTop:8}}>✦ Message received — we'll be in touch!</p>;

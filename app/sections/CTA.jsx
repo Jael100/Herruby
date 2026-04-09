@@ -11,9 +11,17 @@ export default function CTA() {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    // Replace with real endpoint (Mailchimp, ConvertKit, Formspree, etc.)
-    await new Promise(r => setTimeout(r, 900));
-    setSubmitted(true);
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setSubmitted(true);
+    } catch {
+      alert('Something went wrong. Please try again.');
+    }
     setLoading(false);
   }
 
